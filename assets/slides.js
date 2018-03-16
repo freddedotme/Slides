@@ -13,8 +13,7 @@ if (SIZE > 0) {
 
       setTimeout(function () {
         translate3D(el, 0, 0, 0);
-        el.parentNode.appendChild(el.cloneNode(true));
-        el.parentNode.removeChild(el);
+        el.parentNode.appendChild(el);
       }, ANIMATION + 100);
     }, INTERVAL);
   }
