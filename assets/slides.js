@@ -1,40 +1,32 @@
-const slides = document.getElementsByClassName('slide');
-const interval = 5 * 1000;
-const animation = 2 * 1000;
-const size = slides.length;
+const SLIDES = document.getElementsByClassName('slide');
+const SIZE = SLIDES.length;
 
-function next(position) {
-  if (position === size) {
-    position = 0;
-  }
+const INTERVAL = 5 * 1000;
+const ANIMATION = 2 * 1000; // TODO: get CSS transition instead.
 
-  const current = slides[position];
+if (SIZE > 0) {
+  function animate(el) {
+    translate3D(el, "-100%", 0, 0);
 
-  if (position === 0) {
-    current.style.zIndex = (size + 1).toString();
-  }
-
-  current.style.webkitTransform = "translate3D(-100%, 0, 0)";
-  current.style.transform = "translate3D(-100%, 0, 0)";
-
-  setTimeout(function () {
     setTimeout(function () {
-      current.style.webkitTransform = "translate3D(0%, 0, 0)";
-      current.style.transform = "translate3D(0%, 0, 0)";
-    }, animation);
+      animate(el.nextElementSibling);
 
-    if (position === 0) {
-      current.style.zIndex = "0";
-    }
-
-    next(position + 1);
-  }, interval);
-}
-
-function resetDepth() {
-  for (let i = 0; i < size; i++) {
-    slides[i].style.zIndex = "0";
+      setTimeout(function () {
+        translate3D(el, 0, 0, 0);
+        el.parentNode.appendChild(el.cloneNode(true));
+        el.parentNode.removeChild(el);
+      }, ANIMATION + 100);
+    }, INTERVAL);
   }
+
+  function translate3D(el, x, y, z) {
+    el.style.webkitTransform = "translate3D(" + x + ", " + y + ", " + z + ")";
+    el.style.transform = "translate3D(" + x + ", " + y + ", " + z + ")";
+  }
+
+  animate(SLIDES[0]);
+} else {
+  console.log('No slides found, Slides disabled.');
 }
 
-next(0);
+
