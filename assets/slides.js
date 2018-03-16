@@ -19,11 +19,13 @@ if (SIZE > 0) {
   }
 
   function translate3D(el, x, y, z) {
-    el.style['-webkit-transform'] = "translate3D(" + x + ", " + y + ", " + z + ")";
-    el.style['-moz-transform'] = "translate3D(" + x + ", " + y + ", " + z + ")";
-    el.style['-ms-transform'] = "translate3D(" + x + ", " + y + ", " + z + ")";
-    el.style['-o-transform'] = "translate3D(" + x + ", " + y + ", " + z + ")";
-    el.style['transform'] = "translate3D(" + x + ", " + y + ", " + z + ")";
+    let position = "translate3D(" + x + ", " + y + ", " + z + ")";
+
+    el.style['-webkit-transform'] = position;
+    el.style['-moz-transform'] = position;
+    el.style['-ms-transform'] = position;
+    el.style['-o-transform'] = position;
+    el.style['transform'] = position;
   }
 
   animate(SLIDES[0]);
