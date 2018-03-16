@@ -38,6 +38,10 @@ html, body {
   -ms-transition:          transform 2s ease;
   -o-transition:           transform 2s ease;
   transition:              transform 2s ease;
+  -webkit-animation-delay: 0.01s;
+  -moz-animation-delay:    0.01s;
+  -o-animation-delay:      0.01s;
+  animation-delay:         0.01s;
   -webkit-background-size: cover;
   background-size:         cover;
   color:                   #fff;
